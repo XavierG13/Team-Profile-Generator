@@ -12,6 +12,15 @@ const render = require("./lib/htmlRenderer");
 
 let teamMembers = [];
 
+const addMore = [
+  {
+    type: "list",
+    question: "Would you like to add more team members?",
+    name: "addMore",
+    choice: ["Yes", "No"],
+  },
+];
+
 const managerQuestions = [
   {
     type: "input",
@@ -32,11 +41,6 @@ const managerQuestions = [
     type: "input",
     question: "What is office number?",
     name: "managerNumber",
-  },
-  {
-    type: "list",
-    question: "What team member are you adding?",
-    choices: ["Manager", "Engineer", "Intern"],
   },
 ];
 
@@ -64,27 +68,38 @@ const engineerQuestions = [
 ];
 
 const internQuestions = [
-    {
-        type: "input",
-        name: "internsName",
-        message: "What is your intern's name?"
-    },
-    {
-        type: "input",
-        name: "internID",
-        message: "What is your intern's id?"
-    },
-    {
-        type: "input",
-        name: "internEmail",
-        message: "What is your intern's email?"
-    },
-    {
-        type: "input",
-        name: "internSchool",
-        message: "What is your intern's school?"
-    }
+  {
+    type: "input",
+    name: "internsName",
+    message: "What is your intern's name?",
+  },
+  {
+    type: "input",
+    name: "internID",
+    message: "What is your intern's id?",
+  },
+  {
+    type: "input",
+    name: "internEmail",
+    message: "What is your intern's email?",
+  },
+  {
+    type: "input",
+    name: "internSchool",
+    message: "What is your intern's school?",
+  },
 ];
+
+function createManger() {
+  inquirer.prompt(managerQuestions).then((managerInfo) => {
+console.log(managerInfo);
+
+  });
+}
+
+createManger();
+
+//push manager to teamMember array, then prompt to add engineer, intern, or exit, if engineer or intern then switch case for engineer or intern. push once user has gone through prompts for engineer or intern
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
