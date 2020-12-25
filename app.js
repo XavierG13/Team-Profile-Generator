@@ -17,7 +17,7 @@ const addMore = [
     type: "list",
     question: "Would you like to add more team members?",
     name: "addMore",
-    choices: ["Yes", "No"],
+    choices: ["Manger", "Intern", "Engineer", "None"],
   },
 ];
 
@@ -93,13 +93,19 @@ const internQuestions = [
 function createTeam() {
   inquirer.prompt(addMore).then((memberRole) => {
     switch (memberRole.addMore) {
-      case "Yes":
+      case "Manger":
         createManager();
-        createIntern();
-        // createEngineer();
         break;
 
-      case "No":
+      case "Intern":
+        createIntern();
+        break;
+
+      case "Engineer":
+        createEngineer();
+        break;
+
+      case "None":
         render(teamMembers);
         break;
     }
@@ -107,7 +113,7 @@ function createTeam() {
 }
 createTeam();
 
-//will create manager for use in html
+//will initiate manager prompt and create manager for use in teamMember array
 function createManager() {
   inquirer.prompt(managerQuestions).then((managerBio) => {
     const managerInfo = new Manager(
@@ -121,7 +127,7 @@ function createManager() {
   });
 }
 
-// will create intern for use in html
+//will initiate intern prompt and create intern for use in teamMember array
 function createIntern() {
   inquirer.prompt(internQuestions).then((internBio) => {
     const internInfo = new Intern(
@@ -131,10 +137,25 @@ function createIntern() {
       internBio.internSchool
     );
     console.log(internBio);
-    teamMembers.push(internBio);
+    teamMembers.push(internInfo);
   });
 }
-//push manager to teamMember array, then prompt to add engineer, intern, or exit, if engineer or intern then switch case for engineer or intern. push once user has gone through prompts for engineer or intern
+
+function createEngineer() {
+  inquirer.prompt(engineerQuestions).then((engineerBio) => {
+    const engineerInfo = new Engineer(
+      engineerBio.engineerName,
+      engineerBio.engineerID,
+      engineerBio.engineerEmail,
+      engineerBio.engineerGithub
+    );
+    console.log(engineerBio);
+    teamMembers.push(engineerInfo);
+  });
+}
+
+createTeam();
+//will initiate engineer prompt and create engineer for use in teamMember array
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
