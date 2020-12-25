@@ -17,7 +17,7 @@ const addMore = [
     type: "list",
     question: "Would you like to add more team members?",
     name: "addMore",
-    choice: ["Yes", "No"],
+    choices: ["Yes", "No"],
   },
 ];
 
@@ -90,15 +90,50 @@ const internQuestions = [
   },
 ];
 
-function createManger() {
-  inquirer.prompt(managerQuestions).then((managerInfo) => {
-console.log(managerInfo);
+function createTeam() {
+  inquirer.prompt(addMore).then((memberRole) => {
+    switch (memberRole.addMore) {
+      case "Yes":
+        createManager();
+        createIntern();
+        // createEngineer();
+        break;
 
+      case "No":
+        render(teamMembers);
+        break;
+    }
+  });
+}
+createTeam();
+
+//will create manager for use in html
+function createManager() {
+  inquirer.prompt(managerQuestions).then((managerBio) => {
+    const managerInfo = new Manager(
+      managerBio.managerName,
+      managerBio.managerID,
+      managerBio.managerEmail,
+      managerBio.managerNumber
+    );
+    console.log(managerInfo);
+    teamMembers.push(managerInfo);
   });
 }
 
-createManger();
-
+// will create intern for use in html
+function createIntern() {
+  inquirer.prompt(internQuestions).then((internBio) => {
+    const internInfo = new Intern(
+      internBio.internName,
+      internBio.internID,
+      internBio.internEmail,
+      internBio.internSchool
+    );
+    console.log(internBio);
+    teamMembers.push(internBio);
+  });
+}
 //push manager to teamMember array, then prompt to add engineer, intern, or exit, if engineer or intern then switch case for engineer or intern. push once user has gone through prompts for engineer or intern
 
 // Write code to use inquirer to gather information about the development team members,
