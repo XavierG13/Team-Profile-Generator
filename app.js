@@ -19,7 +19,7 @@ const moreMembers = [
     type: "list",
     message: "Would you like to add more team members?",
     name: "addMore",
-    choices: ["Manager", "Intern", "Engineer", "Finished with my team!"],
+    choices: ["Intern", "Engineer", "Finished with my team!"],
   },
 ];
 
@@ -64,7 +64,7 @@ const engineerQuestions = [
   },
   {
     type: "input",
-    name: "engineersGitHub",
+    name: "engineerGitHub",
     message: "What is your engineer's GitHub username?",
   },
 ];
@@ -72,7 +72,7 @@ const engineerQuestions = [
 const internQuestions = [
   {
     type: "input",
-    name: "internsName",
+    name: "internName",
     message: "What is your intern's name?",
   },
   {
@@ -92,40 +92,36 @@ const internQuestions = [
   },
 ];
 
-//will ask user to choose a role they wish to add, if none is chosen app will render what has been given, if user wishes to add more members the user needs to continue selecting until they are ready to create team.
-
-function addMoreMembers() {
-  inquirer.prompt(moreMembers).then((memberRole) => {
-    switch (memberRole.addMore) {
-      case "Manager":
-        createManager();
-        break;
-
-      case "Engineer":
-        createEngineer();
-        break;
-
-      case "Intern":
-        createIntern();
-        break;
-
-      case "Finished with my team!":
-        console.log("Your team is ready!");
-        break;
-    }
+//will ask user to add manager role, then choose a role they wish to add after manager has submitted their info, if Finish team is chosen app will render what has been given, if user wishes to add more members the user needs to continue selecting until they are ready to create team.
+function createManager() {
+  inquirer.prompt(managerQuestions).then((managerBio) => {
+    const managerInfo = new Manager(
+      managerBio.managerName,
+      managerBio.managerID,
+      managerBio.managerEmail,
+      managerBio.managerNumber
+    );
+    teamMembers.push(managerInfo);
+    addMoreMembers();
   });
 
-  //will initiate manager prompt and create manager for use in teamMember array
-  function createManager() {
-    inquirer.prompt(managerQuestions).then((managerBio) => {
-      const managerInfo = new Manager(
-        managerBio.managerName,
-        managerBio.managerID,
-        managerBio.managerEmail,
-        managerBio.managerNumber
-      );
-      teamMembers.push(managerInfo);
-      addMoreMembers();
+  function addMoreMembers() {
+    inquirer.prompt(moreMembers).then((memberRole) => {
+      switch (memberRole.addMore) {
+        case "Engineer":
+          createEngineer();
+          break;
+
+        case "Intern":
+          createIntern();
+          break;
+
+        case "Finished with my team!":
+          console.log(teamMembers);
+          console.log("Your team is ready!");
+          createHTML();
+          break;
+      }
     });
   }
 
@@ -150,21 +146,19 @@ function addMoreMembers() {
         engineerBio.engineerName,
         engineerBio.engineerID,
         engineerBio.engineerEmail,
-        engineerBio.engineerGithub
+        engineerBio.engineerGitHub
       );
       teamMembers.push(engineerInfo);
       addMoreMembers();
     });
   }
+
+  function createHTML() {
+    fs.writeFileSync(outputPath, render(teamMembers), "utf-8");
+  }
 }
 
-addMoreMembers();
-// function createHTML() {
-//   let file = fs.readFileSync("main.html");
-//   fs.writeFileSync(outputPath, file, function (err) {
-//     if (err) throw err;
-//   });
-// }
+createManager();
 
 // Write code to use inquirer to gather information about the development team members,
 // and to create objects for each team member (using the correct classes as blueprints!)
