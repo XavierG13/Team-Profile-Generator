@@ -56,8 +56,8 @@ guzmanxavi112@gmail.com
 
 ## Video:
 
-- [Link to video](assets\teamprofilevid.webm)
+- [Link to video](https://drive.google.com/file/d/1K-9-JNZHIfjdYB5GDdo2RDbSCgf3LBZP/view)
 
 ## Images:
 
-![img](assets\screencapture-127-0-0-1-5500-output-team-html-2021-01-02-11_28_53.png)
+![img](assets\screencapture-127-0-0-1-5500-output-team-html-2021-01-02-11_28_53.png "Team Profile Generator")
