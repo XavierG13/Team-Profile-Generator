@@ -74,4 +74,4 @@ guzmanxavi112@gmail.com
 
 ## Images:
 
-![Team Profile Generator](assets\screenshot.png)
+![Team Profile Generator](\assets\screenshot.png)
