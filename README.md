@@ -30,7 +30,11 @@ npm install, npm install jest, npm install inquirer, npm install path
 
 ## Usage:
 
-It is used to generate a Team of Developers of the user's choosing. User will need to run in terminal to be prompted questions for each individual role. After creating a manager the user will now be able to add as many engineers and interns as they need. Once the user is done adding their members they will be asked to Finish and then this will update the html for each role and be used in the team.html.
+It is used to generate a Team of Developers of the user's choosing. User will need to run in terminal to be prompted questions for each individual role. 
+
+After creating a manager the user will now be able to add as many engineers and interns as they need. 
+
+Once the user is done adding their members they will be asked to Finish and then this will update the html for each role and be used in the team.html.
 
 ## License:
 
@@ -42,7 +46,17 @@ N/A
 
 ## Testing:
 
-User will need to run test to check if all tests in the lib folder are being coded properly. Next, the user will need to install any required packages and then use node app.js to run initial prompts. Prompts will need to be answered, if not information will be left out.
+User will need to run test to check if all tests in the lib folder are being coded properly. 
+
+Next, the user will need to install any required packages and then use node app.js to run initial prompts. Prompts will need to be answered, if not information will be left out.
+
+## Tools/Framework
+* HTML
+* CSS
+* JavaScript
+* jQuery
+* Node.JS
+* Jest/Test
 
 ### Github Username:
 
@@ -60,4 +74,4 @@ guzmanxavi112@gmail.com
 
 ## Images:
 
-![teamprofilegenerator](assets\screencapture-127-0-0-1-5500-output-team-html-2021-01-02-11_28_53.png)
+![Team Profile Generator](assets\screenshot.png)
