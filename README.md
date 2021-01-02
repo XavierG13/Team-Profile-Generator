@@ -60,4 +60,4 @@ guzmanxavi112@gmail.com
 
 ## Images:
 
-![img](assets\screencapture-127-0-0-1-5500-output-team-html-2021-01-02-11_28_53.png "Team Profile Generator")
+![teamprofilegenerator](assets\screencapture-127-0-0-1-5500-output-team-html-2021-01-02-11_28_53.png)
